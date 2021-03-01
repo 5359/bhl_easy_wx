@@ -123,7 +123,7 @@ export default {
   methods:{
     textTip: function (str, t, callBack) {
         var _this = this;
-        t = t || 3500;
+        t = t || 200;
         if(t == 'false' && this.mytip == null){
           return false;
         }

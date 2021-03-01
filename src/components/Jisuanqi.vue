@@ -46,12 +46,16 @@
         ></vue-slider>
       </div>
       <h3 class="display_flex justify-content_flex-justify">预付比例*<span>{{value1}}%</span></h3>
-      <h3 class="display_flex justify-content_flex-justify line">{{setcarinfo.isrv=='BALLOON'?'尾款':'残值'}}金额*<span>￥ <input @blur="inputChange" v-model="balloon_amt.val" type="text" /> 元</span></h3>
+      <!-- <h3 class="display_flex justify-content_flex-justify line" v-if="setcarinfo.isrv=='BALLOON'">{{setcarinfo.isrv=='BALLOON'?'尾款金额':'期末保值率'}}*<span>￥ <input @blur="inputChange" v-model="balloon_amt.val" type="text" /> 元</span></h3> -->
+      <h3 :class="setcarinfo.isrv=='BALLOON'?'display_flex justify-content_flex-justify line':'hide'">尾款金额*<span>￥ <input @blur="inputChange" v-model="balloon_amt.val" type="text" /> 元</span></h3>
+      <h3 :class="setcarinfo.isrv=='BALLOON'?'hide':'display_flex justify-content_flex-justify line'">
+      	期末保值率*<span id="ratio" style="flex:1;text-align:right;">{{setcarinfo.balance_ratio}}%</span>
+      </h3>
       <p class="tip red">{{balloon_txt}}</p>
-      <h3 class="display_flex justify-content_flex-justify line">是否接受附加品* <span>
-        <label class="fjpcheckbox"><input type="checkbox" v-model="checkboxed" :disabled="!checkboxs.length" @change="checkbox_change" name=""><i></i></label></span></h3>
+      <!-- <h3 class="display_flex justify-content_flex-justify line">是否接受附加品* <span>
+        <label class="fjpcheckbox"><input type="checkbox" v-model="checkboxed" :disabled="!checkboxs.length" @change="checkbox_change" name=""><i></i></label></span></h3> -->
       
-      <h3 class="display_flex justify-content_flex-justify line">附加品总金额* <span>￥ <template v-if='checkboxed'><input type="text" v-model="setcarinfo.accessory_amount"  @blur="inputChange1" /></template><template v-else>{{setcarinfo.accessory_amount=0}}</template> 元</span></h3>
+      <!-- <h3 class="display_flex justify-content_flex-justify line">附加品总金额* <span>￥ <template v-if='checkboxed'><input type="text" v-model="setcarinfo.accessory_amount"  @blur="inputChange1" /></template><template v-else>{{setcarinfo.accessory_amount=0}}</template> 元</span></h3> -->
 
     </div>
 
@@ -130,6 +134,7 @@ export default {
       systemSel:null,
       disposeSel:null,
       productSel:null,
+      czsel:null,
       productlistarr:[],
       downpay_amount:0,
       setcarinfo:{
@@ -137,10 +142,12 @@ export default {
         accessory_amount: 0,
         accessory_include_flag: "Y",
         balloon_amt:0,
+        balance_ratio:0,
         description: "",
         downpay_amount:0,
         downpay_percentage:0,
         isrv: "RV",
+        rv:'0%',
         max_downpay_percentage:100,
         min_downpay_percentage:0,
         product_code: "",
@@ -164,11 +171,6 @@ export default {
   },
   created(){
     this.getAttachment();
-    // this.attachmentList=[
-    //   require('../../static/img/jsqbanner1.jpg'),
-    //   require('../../static/img/jsqbanner2.jpg'),
-    //   require('../../static/img/jsqbanner3.jpg')
-    // ]
   },
   
   mounted() {
@@ -187,7 +189,7 @@ export default {
   methods:{
     textTip: function (str, t, callBack) {
         var _this = this;
-        t = t || 3500;
+        t = t || 200;
         if(t == 'false' && this.mytip == null){
           return false;
         }
@@ -343,6 +345,7 @@ export default {
                             _this.carlist.dispose.val = {id:'',value:'请选择'};
                             _this.carlist.products.val = {id:'',value:'请选择'};
                             _this.setcarinfo.product_name = '未选择'
+                            _this.setcarinfo.balance_ratio=0;
                             _this.carlist.brand.val = {id:data[0].id,value:data[0].value}
 
                             _this.textTip('正在查询车系...','show')
@@ -404,6 +407,7 @@ export default {
                             _this.carlist.products.val = {id:'',value:'请选择'};
                             _this.setcarinfo.product_name = '未选择'
                             _this.carlist.system.val = data[0]
+                            _this.setcarinfo.balance_ratio=0;
                             _this.textTip('正在查询配置...','show')
                             _this.getDisposelist(token,data[0].id)
                           }
@@ -448,7 +452,7 @@ export default {
                 })
                }) 
                 _this.carlist.dispose.data = arrs
-                
+                console.log('sem:'+ '' +_this.carlist.dispose.sem)
                 if(!_this.carlist.dispose.sem){
                   _this.carlist.dispose.sem=true
                   _this.disposeSel = new MobileSelect({
@@ -459,10 +463,11 @@ export default {
                           {data: _this.carlist.dispose.data}
                       ],
                       callback:function(indexArr, data){
+
                         _this.carlist.products.val = {id:'',value:'请选择'};
                         _this.carlist.dispose.val = data[0];
-                        console.log(data[0])
                         _this.setcarinfo.product_name = '请稍后'
+                        _this.setcarinfo.balance_ratio=0;
                         _this.textTip('正在查询产品请稍后','show')
                         _this.getProducts();
                       }
@@ -536,7 +541,12 @@ export default {
                                 $.each(_this.productlistarr[data[0].ind],function(key,val){
                                   _this.setcarinfo[key]  = val
                                 })
-                                console.log(_this.productlistarr[data[0].ind].isrv)
+                                console.log(_this.productlistarr[data[0].ind])
+                                if(_this.productlistarr[data[0].ind].isrv != 'BALLOON'){
+                                	_this.getRV(_this.productlistarr[data[0].ind]['product_code'])
+                                }
+                                _this.setcarinfo.balance_ratio=0;
+                                
                                 _this.value1 = _this.productlistarr[data[0].ind]['downpay_percentage']
                                 _this.balloon_amt.min = _this.carlist.dispose.val.price*_this.productlistarr[data[0].ind].min_downpay_percentage/100
                                 _this.balloon_amt.max = _this.carlist.dispose.val.price*_this.productlistarr[data[0].ind].max_downpay_percentage/100
@@ -561,12 +571,14 @@ export default {
                                 var sx=Math.round(now/10)*10
                                 _this.value1 = sx;
 
-                                var nowmin = min+10
-                                for (var i = nowmin; i < max ; i++) {
-                                  if (i%10 == 0) {
-                                    _this.setcarinfo.marks.push(i)
-                                  }
-                                }
+                                //if(max>min){
+                                    var nowmin = min+10
+                                    for (var i = nowmin; i < max ; i++) {
+                                      if (i%10 == 0) {
+                                        _this.setcarinfo.marks.push(i)
+                                      }
+                                    }
+                                    //}
                                 console.log(_this.setcarinfo.marks)
                                 _this.setcarinfo.marks.push(max)
                                 _this.countBalance();
@@ -589,6 +601,49 @@ export default {
               })
           }
     },
+    getRV:function(proCode){
+    	var _this = this;
+		$.ajax({
+	        url:process.env.API_ROOT+"/app/r/api?sysName=BX_WX&apiName=GET_RVRATIO",          
+	        type:'post',
+	        headers:{
+	          'Content-Type':'application/json;charset=utf8',
+	          'Authorization':'Bearer ' + _this.token
+	        },
+	        data:JSON.stringify({
+	          'open_id':(new Date()).getTime(),
+	          'product_code':proCode
+	        }),
+	        success:function(ms){
+	        	var ds=[]
+	        	$.each(ms.info.lists,function(index,item){
+	        		ds.push({
+	        			id:index,
+	        			value:item.ratiovalue
+	        		})
+	        	});
+	        	if(_this.czsel == null){
+					_this.czsel = new MobileSelect({
+	                          trigger: "#ratio",
+	                          title: "期末保值率",
+	                          triggerDisplayData:false,
+	                          wheels: [
+	                              {data: ds}
+	                          ],
+	                          callback:function(indexArr, data){
+	                          	_this.setcarinfo.balance_ratio = data[0].value
+
+      							_this.countBalance();
+
+	                          }
+	                      })
+				}else{
+					_this.czsel.updateWheel(0,ds)
+                    _this.czsel.locatePosition(0,0);
+				}
+	        }
+	    })
+    },
     getRadioVal:function(){
        this.countBalance();
     },
@@ -607,10 +662,11 @@ export default {
             'downpay_percentage':_this.value1,
             'moicn_code':_this.carlist.dispose.val.id,
             'product_code':_this.setcarinfo.product_code,
-            'accessory_amount':_this.checkboxed?_this.setcarinfo.accessory_amount:0,
+            'accessory_amount':0,//_this.checkboxed?_this.setcarinfo.accessory_amount:0,
             'accessory_accept_flag':_this.checkboxed?'Y':'N',
             'term':_this.radioVal,
-            'balloon_amt':_this.balloon_amt.val
+            'balloon_amt':_this.balloon_amt.val,
+            'balance_ratio':_this.setcarinfo.balance_ratio
           }
        console.log(_datas)
       _this.textTip('计算中','show')
@@ -701,6 +757,7 @@ label input:checked+i:after{content:"";display:block;width:.25rem;height:.15rem;
 .sliderbox >>> .vue-slider-process{background:#143269}
 .sliderbox >>> .vue-slider-dot-tooltip-inner{border-color:#143269;background:#143269;}
 .sliderbox >>> .vue-slider-mark-step{background:rgba(255, 255, 255, 0.36)}
+.hide{display:none;}
 @media screen and (min-width: 750px) {
     .box{max-width:750px;margin-left:auto;margin-right:auto;box-sizing:border-box;}
     .selcarbox .info {
