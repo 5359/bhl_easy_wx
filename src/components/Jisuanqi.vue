@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap" :style="selcar.show?'overflow:hidden':''">
+  <div class="wrap" :style="selcar.show?'overflow:hidden;height:'+wh+'px':''">
 
     <div class="swiper-container carimgs">
       <div class="swiper-wrapper">
@@ -102,6 +102,7 @@ export default {
     return {
       token:'',
       value1: 0,
+      wh:0,
       checkboxed:false,
       formatter2: '{value}%',
       carinfo:{
@@ -170,7 +171,8 @@ export default {
       VueSlider
   },
   created(){
-    this.getAttachment();
+      this.wh = $(window).height();
+      this.getAttachment();
   },
   
   mounted() {
@@ -703,7 +705,6 @@ export default {
 
 <style scoped>
 h1{text-align:center;padding-top:.25rem;}
-.wrap{padding-top:2rem;overflow:auto;box-sizing:border-box;}
 .selCarBtn{display:inline-block;background:#143269;padding:.35rem 1rem;border-radius:1rem;margin:.5rem auto 0;}
 .selCarBtn span{padding-left:1.07rem;background:url('../assets/icon4.png') no-repeat left center;background-size:.75rem;color:#fff;font-size:.6rem;}
 .box{margin:.7rem;background:#fff;box-shadow:0 0 .25rem rgba(0,0,0,.3);border-radius:.25rem;padding:.5rem .5rem .7rem;}

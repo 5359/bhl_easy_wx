@@ -38,6 +38,7 @@ export default {
 </script>
 
 <style scoped>
+	.wrap{padding-top:0;}
   #Footer{background:#1a1a1a;text-align:center;overflow:hidden;}
   .ec{border-bottom:1px solid rgba(255,255,255,.2);padding:.2rem 1rem;display:none;}
   .ec a{display:block;padding:.36rem 0;}

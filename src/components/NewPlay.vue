@@ -90,7 +90,6 @@ export default {
 
 <style scoped>
 h1{text-align:center;padding-top:1rem;}
-.wrap{padding-top:2rem;overflow:auto;box-sizing:border-box;}
 .box{margin:.7rem;background:#fff;box-shadow:0 0 .25rem rgba(0,0,0,.3);border-radius:.25rem;padding:.5rem .5rem .7rem;position:relative;}
 .box.hie{height:3rem;overflow:hidden;}
 .box:after{content:'';display:block;width:.45rem;height:.45rem;border-bottom:1px solid #ccc;border-right:1px solid #ccc; transform: rotate(-135deg);position:absolute;bottom:.65rem;right:.85rem;}

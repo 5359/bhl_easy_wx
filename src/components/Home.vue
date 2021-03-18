@@ -175,11 +175,10 @@ export default {
 </script>
 
 <style scoped>
-.wrap{height:100%;overflow:auto;}
 .swiper-slide{position:relative;}
 .pag >>> .swiper-pagination-bullet{background:#fff;}
 .pag .swiper-pagination-bullet-active{background:#143269; }
-.banner{margin-top:2rem;}
+.banner{}
 .banner a{position:absolute;left:50%;bottom:4rem;width:6rem;margin-left:-3rem;height:1.5rem;color:#fff;background:#143269;text-align:center;line-height:1.5rem;border-radius:1rem;font-size:.6rem;}
 .banner >>> .swiper-pagination{bottom:2.5rem;}
 .banner >>> .swiper-pagination-bullet-active{background:#fff;opacity:.55;}

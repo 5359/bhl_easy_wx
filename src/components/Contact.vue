@@ -65,7 +65,6 @@ export default {
 
 
 <style scoped>
-.wrap{padding-top:2rem;overflow:auto;min-height:12rem;box-sizing:border-box;}
 .wap{background:url('../assets/bxbg.jpg') no-repeat center 0;background-size:100%;}
 .box{margin:.7rem;background:#fff;box-shadow:0 0 .25rem rgba(0,0,0,.3);border-radius:.25rem;padding:.5rem .5rem 1.7rem;position:relative;margin-bottom:4rem;}
 .map{height:10rem;}

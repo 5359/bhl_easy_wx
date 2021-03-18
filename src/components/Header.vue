@@ -1,19 +1,17 @@
 <template>
   <div id="Header">
-    <div class="wrap">
+    <div class="w">
       <div class="logo"></div>
         <a href="javascript:;" v-if="!narB" :class="showNav?'navbtn cloasnav':'navbtn'"  v-on:click="navbing"><i></i>
         </a>
-      <template v-if="!narB">
-          <div :class="showNav?'navbox show':'navbox' "  :style="{height:wh+'px'}"> <Nav  :msg-val="showNav" @child-event='parentEvent' /> </div> 
-      </template>
-      <template v-else>
-          <div class="nar" ><Nav  /></div>
-      </template>
-
-    </div>
-    
-  </div> 
+        <template v-if="!narB">
+            <div :class="showNav?'navbox show':'navbox' "  :style="{height:wh+'px'}"> <Nav  :msg-val="showNav" @child-event='parentEvent' /> </div> 
+        </template>
+        <template v-else>
+            <div class="nar" ><Nav  /></div>
+        </template>
+    </div> 
+  </div>
 </template>
 <script>
 import Nav from '../components/Nav'
@@ -70,7 +68,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
   #Header{padding:.5rem 0 0;height:2.1rem;background:#fff;position:fixed;width:100%;box-sizing:border-box; -moz-box-sizing:border-box;z-index:9999;top:0;}
-  .wrap{max-width:1200px;margin:0 auto;}
+  .w{max-width:1200px;margin:0 auto;}
   .logo{width:8rem;height:1.2rem;background:url('../assets/logo.png') no-repeat center;background-size:100%;float:left;position:relative;z-index:99;margin-left:.5rem;}
   .navbtn{width:1.16rem;height:1rem;position:relative;display:block;float:right;position:relative;z-index:99;margin-right:.5rem;}
   .navbtn:after,.navbtn:before{content:"";height:.13rem;width:100%;background:#2c73b6;display:block;position:absolute;left:0;top:0;border-radius:1rem;transition:.3s;}

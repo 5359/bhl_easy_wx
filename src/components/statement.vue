@@ -56,7 +56,6 @@ export default {
 
 
 <style scoped>
-.wrap{padding-top:2rem;overflow:auto;box-sizing:border-box;}
 .wrb{background:url('../assets/bxbg.jpg') no-repeat center 0;background-size:100%;}
 .box{margin:.7rem .7rem 1.5rem;background:#fff;box-shadow:0 0 .25rem rgba(0,0,0,.3);border-radius:.25rem;padding:.5rem .5rem .7rem;position:relative;padding-top:1rem;}
 .box .t{color:#143269;font-size:.65rem;padding:.45rem 0 .65rem;text-align:center;}

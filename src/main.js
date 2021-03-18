@@ -74,6 +74,13 @@ var router = new VueRouter({
       meta:{
         sel:8
       }
+    },{
+      path:'/active',
+      name:'营销活动',
+      component:resolve=>(require(["@/components/Active"],resolve)),
+      meta:{
+        sel:9
+      }
     }
   ]
 })

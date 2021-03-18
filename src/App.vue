@@ -1,7 +1,7 @@
 <template>
-  <div id="app"  :style="{height:wh+'px'} " >
+  <div id="app" >
     <Header/>
-    <router-view  :style="{'height':wh+'px'} "></router-view>
+    <router-view ></router-view>
   </div>
 </template>
 
@@ -36,8 +36,9 @@ export default {
 </script>
 
 <style>
-html{font-size:6.2vw;min-height:100%;-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
-body { margin: 0; font-size: .6rem; line-height: 1.5; color: #666; background:#fff;height: 100%; overflow-x: hidden; -webkit-overflow-scrolling: touch;}
+html{ font-family: "Helvetica Neue", Helvetica, STHeiTi, Arial, sans-serif;font-size:6.2vw;min-height:100%;-ms-text-size-adjust: 100%; -webkit-text-size-adjust: 100%; }
+body { margin: 0; font-size: .6rem; line-height: 1.5; color: #666; background:#fff;overflow-x: hidden; -webkit-overflow-scrolling: touch;}
+*{-webkit-overflow-scrolling: touch;}
 
 a { background: transparent; text-decoration: none; -webkit-tap-highlight-color: transparent; color: #000; }
 a:active { outline: 0; }
@@ -66,16 +67,15 @@ input,textarea,a{outline: none;}
 input::-moz-placeholder, textarea::-moz-placeholder { color: #cccccc; }
 input:-ms-input-placeholder, textarea:-ms-input-placeholder { color: #cccccc; }
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder { color: #cccccc; }
-body{overflow:hidden;}
+body{}
 #app {
   font-family: huawen,"微软雅黑",'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #000;
-  min-height:100%;
   margin:0 auto;
   position:relative;
-  overflow:hidden;
+  overflow:auto;
   width:100%;
 }
 #Header{z-index:9999;}
@@ -105,35 +105,42 @@ body{overflow:hidden;}
 .order_3{-webkit-box-ordinal-group: 3;-ms-flex-order: 3;-webkit-order: 3;order: 3;}
 .boxSizing{box-sizing:border-box; -moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
 .tc{text-align:center;}
+.wrap{padding-top:2rem;overflow:auto;box-sizing:border-box;}
 @media screen and (min-width: 750px) {
     html {
        font-size:40px;
     }
     .btn{font-size:16px !important;}
     h1{font-size:.7rem;}
+    .wrap{}
 }
-.wrap{}
 .vue-slider-marks{}
 .btn{font-size:.6rem;display:inline-block;background:#143269;color:#fff;border-radius:1rem;padding:.25rem 1.2rem;}
 .text-tip {
+  position:fixed;
+  width:100%;height:100%;
+  top:0;left:0;
+  background:rgba(255,255,255,.01);
+    display: none;
+    z-index: 9999;
+}
+.text-tip .los {
     display: block;
     background:rgba(0,0,0,.1);
     color: #fff;
     padding: 10px 10px;
     line-height: 18px;
-    position: fixed;
+    position: absolute;
     left: 50%;
     top:50%;
     margin-top:-1.5rem;
     -webkit-transform: translate(-50%);
     transform: translate(-50%);
     border-radius: 3px;
-    display: none;
-    z-index: 9999;
     font-size: 12px;
     text-align: center;
 }
-.text-tip .los{width:2.2rem;height:2.2rem;background:url('assets/loading.gif');background-size:cover;}
+.text-tip .los:after{content:"";display:block;width:2.2rem;height:2.2rem;background:url('assets/loading.gif');background-size:cover;}
 
 .sk-fading-circle {
   width: 3rem;

@@ -1,5 +1,5 @@
 <template>
-  <div class="wrap coment" :style="(cityboxshow||filterboxshow)?'overflow:hidden':''">
+  <div class="wrap coment" :style="(cityboxshow||filterboxshow)?'overflow:hidden;height:'+wh+'px':''">
     <h1>查找经销商</h1>
     <div class="box searchbx">
       <h2 class="display_flex justify-content_flex-justify">
@@ -80,6 +80,7 @@ export default {
       filterboxshow:false,
       inpVal:'',
       token:'',
+      wh:0,
       showNum:10,
       city:{
         br:false,
@@ -107,14 +108,12 @@ export default {
   },
   created(){
     var _this = this;
+    this.wh = $(window).height();
     this.getThoken();
-
-
-    
   },
   mounted() {
     var _this=this;
-    this.wrap=document.querySelector('.coment');
+    this.wrap=$(document).get(0); //document.querySelector('#app');
     this.ft = $('.footer').offset().top;
     _this.$nextTick(function () {
       _this.wrap.addEventListener('scroll', _this.onScroll)
@@ -437,6 +436,7 @@ export default {
       } else {
         clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight)
       }
+      console.log(clientHeight)
       return clientHeight
     },
 
@@ -447,14 +447,15 @@ export default {
     // 滚动事件触发下拉加载
     onScroll () {
       var _this = this
-      //if (this.getScrollHeight() - this.getClientHeight() - this.getScrollTop() <= 0) {
-      if($('.footer').offset().top - this.getClientHeight()<0) {
+      //if($('.footer').offset().top - this.getClientHeight()<0) {
+        console.log($('.footer').offset().top-$('.footer').outerHeight()-$(document).scrollTop()-this.getClientHeight())
+      if($('.footer').offset().top-$('.footer').outerHeight()-$(document).scrollTop()-this.getClientHeight()<=0){
           if (this.showNum<this.total&&!this.loadb) {
               
                 this.loadb=true
                 setTimeout(function(){
                   _this.showNum += 10
-                },2000)
+                },1000)
               
               this.loading='加载中'
           }else if(this.showNum>=this.total){
@@ -477,7 +478,6 @@ export default {
   display:block;width:10rem;height:8rem;background:url('../assets/none.png') no-repeat center;background-size:5rem;margin:0 auto;
 }
 h1{text-align:center;padding-top:1rem;}
-.wrap{padding-top:2rem;overflow:auto;box-sizing:border-box;}
 .box{margin:.7rem;background:#fff;box-shadow:0 .3rem .45rem rgba(0,0,0,.08);border:1px solid #f3f3f3;border-radius:.25rem;padding:.5rem .5rem .7rem;position:relative;}
 .box .t{position:relative;color:#143269;font-weight:500;font-size:.6rem;margin-bottom:.25rem;margin-left:-.5rem;}
 .box .t span{margin-left:.5rem; display:block;border-bottom:1px solid #e8e8e8;padding-bottom:.45rem;}
