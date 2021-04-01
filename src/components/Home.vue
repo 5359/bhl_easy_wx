@@ -120,7 +120,7 @@ export default {
     this.clientWidth = $(window).width();
     if(this.clientWidth > 1000){
 		this.imgB = false;
-    } 
+    }
   },
   mounted() {
 

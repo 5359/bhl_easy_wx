@@ -83,11 +83,16 @@ var router = new VueRouter({
       },
     },{
       path:'/classHome',
-      name:'微课堂',
+      name:'classHome',
       component:resolve=>(require(["@/components/ClassHome"],resolve)),
       meta:{
         sel:10
       }
+    },
+    {
+      path:'/imgs',
+      name:'imgs',
+      component:resolve => require(['@/components/Imgs'],resolve)
     }
   ]
 })

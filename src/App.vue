@@ -24,7 +24,7 @@ export default {
   render:function(){
   },
   beforeRouteEnter(to,from,next){
-      
+
   },
   methods:{
     getPath:function(){
