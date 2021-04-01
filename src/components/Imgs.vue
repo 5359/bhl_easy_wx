@@ -2,7 +2,7 @@
   <div class="wrap">
     <h1><span>{{title}}</span></h1>
     <div :class="navShow?'tools hie':'tools'">
-      <div class="navbar" @click="back()"><img src="../assets/icon3.png" /></div>
+      <div class="navbar" @click="back()"><img src="../assets/icon9.png" /></div>
       <!--<div class="navbar" @click="navShow = true"><img src="../assets/icon2.png" /></div>-->
     </div>
     <div class="box"   >
