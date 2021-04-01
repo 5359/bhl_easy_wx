@@ -69,6 +69,13 @@ export default new Router({
       meta:{
         sel:8
       }
+    },{
+      path:'/classHome',
+      name:'微课堂',
+      component:resolve=>(require(["@/components/ClassHome"],resolve)),
+      meta:{
+        sel:9
+      }
     }
   ]
 })

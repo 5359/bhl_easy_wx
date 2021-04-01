@@ -25,8 +25,8 @@
         </ul>
       </div>
         <span class="ie" @click="showfn(2)" ></span>
-      
-    </div>    
+
+    </div>
   </div>
 </template>
 
@@ -62,7 +62,7 @@ export default {
       }else{
         this.sel = num
       }
-      
+
     },
     getThoken:function () {
       var _this = this;
@@ -74,7 +74,7 @@ export default {
           _this.token = result.access_token
         }
       });
-      
+
     },
     getClassroom:function(){
       var _this = this;
@@ -124,7 +124,7 @@ h1 span{color:#fff;font-size:.85rem;}
 .box > i{content:"";width:.12rem;height:.7rem;display:block;background:#143269;position:absolute;left:0;top:.68rem;transition:.4s;}
 ul{padding:.25rem .8rem 1.3rem;}
 ul li{border-bottom:1px solid #eee;padding:.5rem 0;position:relative;padding-left:1.4rem;cursor:pointer;}
-ul li i{width:1rem;background:url('../assets/icon.png') no-repeat center;background-size:.6rem;display:block;position:absolute;left:0;top:50%;margin-top:-.5rem;height:1rem;}
+ul li i{width:1rem;background:url('../assets/icon1.png') no-repeat center;background-size:.6rem;display:block;position:absolute;left:0;top:50%;margin-top:-.5rem;height:1rem;}
 
 @media screen and (min-width: 750px) {
   .box.show:hover > i{top:0;height:100%;}

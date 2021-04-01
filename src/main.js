@@ -80,6 +80,13 @@ var router = new VueRouter({
       component:resolve=>(require(["@/components/Active"],resolve)),
       meta:{
         sel:9
+      },
+    },{
+      path:'/classHome',
+      name:'微课堂',
+      component:resolve=>(require(["@/components/ClassHome"],resolve)),
+      meta:{
+        sel:10
       }
     }
   ]
