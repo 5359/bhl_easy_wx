@@ -1,7 +1,7 @@
 <template>
-  <div id="app" >
-    <Header/>
-    <router-view ></router-view>
+  <div id="app">
+    <Header v-if="this.$route.name!=='classHome'&&this.$route.name!=='imgs'"></header>
+    <router-view/>
   </div>
 </template>
 
@@ -271,6 +271,29 @@ body{}
   40% {
     opacity: .5;
   }
+}
+
+.viewer-toolbar > ul > li{width:1.75rem;height:1.75rem;text-align:center;}
+
+.viewer-toolbar > ul > li::before{display:inline-block;margin-top:.45rem;}
+.viewer-toolbar > ul > li + li{margin-left:5px;}
+.viewer-flip-horizontal,.viewer-flip-vertical,.viewer-rotate-right,.viewer-rotate-left,.viewer-play{display:none;}
+.viewer-title{display:none;}
+@media only screen  and (orientation:landscape) {
+  .viewer-toolbar > ul > li{width:1.1rem;height:1.1rem;}
+  .viewer-toolbar > ul > li::before{margin-top:.35rem;}
+}
+
+@media screen and (min-width: 750px) {
+  html {
+    font-size:20px;
+  }
+  h1{font-size:20px;}
+  .wrap{width:750px;margin:0 auto;}
+
+
+  .viewer-toolbar > ul > li{width:48px;height:48px;}
+  .viewer-toolbar > ul > li::before{margin-top:13px;}
 }
 </style>
 

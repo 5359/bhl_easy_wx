@@ -3,7 +3,7 @@
     <h1><span>{{title}}</span></h1>
     <div :class="navShow?'tools hie':'tools'">
       <div class="navbar" @click="back()"><img src="../assets/icon3.png" /></div>
-      <div class="navbar" @click="navShow = true"><img src="../assets/icon2.png" /></div>
+      <!--<div class="navbar" @click="navShow = true"><img src="../assets/icon2.png" /></div>-->
     </div>
     <div class="box"   >
       <h2><span>{{tit}}</span></h2>
@@ -97,7 +97,7 @@
         this.getClassroomAtm(n);
       },
       back(){
-        this.$router.push({path: '/'})
+        this.$router.push({path: '/classHome'})
       },
       renderResize() {
         var _This = this;

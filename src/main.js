@@ -1,3 +1,5 @@
+import Viewer from 'v-viewer'
+import 'viewerjs/dist/viewer.css'
 import App from './App'
 Vue.config.productionTip = false
 import VueSlider from 'vue-slider-component'
@@ -7,6 +9,27 @@ Vue.component('VueSlider', VueSlider)
 import './comme/font.css'
 import 'swiper/dist/css/swiper.min.css'
 import 'swiper/dist/js/swiper.min'
+Vue.use(Viewer)
+Viewer.setDefaults({
+  Options: {
+    'inline': true,
+    'button': true,
+    'navbar': true,
+    'title': false,
+    'toolbar': true,
+    'tooltip': true,
+    'movable': true,
+    'zoomable': true,
+    'rotatable': false,
+    'scalable': false,
+    'transition': true,
+    'fullscreen': true,
+    'keyboard': true,
+    'url': 'data-source',
+
+  }
+
+})
 
 var router = new VueRouter({
 	mode: 'hash',
