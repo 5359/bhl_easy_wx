@@ -112,7 +112,7 @@ h1{text-align:center;padding-top:1rem;}
 
 .hie h2+p{min-height:2rem;}
 @media screen and (min-width: 750px) {
-    .wp{min-height:calc(100% - 217px);overflow:hidden;}
+    .wp{min-height:calc(100% - 217px);}
     .box {
        max-width:1200px;
        margin-left:auto;

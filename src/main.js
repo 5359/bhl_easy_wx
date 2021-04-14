@@ -115,7 +115,7 @@ var router = new VueRouter({
     {
       path:'/imgs',
       name:'imgs',
-      component:resolve => require(['@/components/Imgs'],resolve)
+      component:resolve => (require(['@/components/Imgs'],resolve))
     }
   ]
 })

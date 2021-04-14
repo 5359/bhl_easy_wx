@@ -105,7 +105,7 @@ body{}
 .order_3{-webkit-box-ordinal-group: 3;-ms-flex-order: 3;-webkit-order: 3;order: 3;}
 .boxSizing{box-sizing:border-box; -moz-box-sizing:border-box;-webkit-box-sizing:border-box;}
 .tc{text-align:center;}
-.wrap{padding-top:2rem;overflow:auto;box-sizing:border-box;}
+.wrap{padding-top:2rem;box-sizing:border-box;}
 @media screen and (min-width: 750px) {
     html {
        font-size:40px;
@@ -285,9 +285,7 @@ body{}
 }
 
 @media screen and (min-width: 750px) {
-  html {
-    font-size:20px;
-  }
+  
   h1{font-size:20px;}
   .wrap{width:750px;margin:0 auto;}
 

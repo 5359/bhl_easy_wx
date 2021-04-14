@@ -416,8 +416,6 @@ export default {
 
       $.each(_this.brandlist,function(index,item){
           _this.brandSpare[index] = JSON.parse(JSON.stringify(item));
-        console.log('s:'+_this.brandlist[index].sel)
-        console.log('l:::'+_this.brandSpare[index].sel)
       })
     },
     // 获取滚动条当前的位置
@@ -436,7 +434,6 @@ export default {
       } else {
         clientHeight = Math.max(document.body.clientHeight, document.documentElement.clientHeight)
       }
-      console.log(clientHeight)
       return clientHeight
     },
 
@@ -448,7 +445,6 @@ export default {
     onScroll () {
       var _this = this
       //if($('.footer').offset().top - this.getClientHeight()<0) {
-        console.log($('.footer').offset().top-$('.footer').outerHeight()-$(document).scrollTop()-this.getClientHeight())
       if($('.footer').offset().top-$('.footer').outerHeight()-$(document).scrollTop()-this.getClientHeight()<=0){
           if (this.showNum<this.total&&!this.loadb) {
               

@@ -16,10 +16,16 @@
           <input type="tel" name="phone" v-model="dataForm.phone" placeholder="*请输入本人手机号" />
         </div>
         <div class="cum">
+          <input type="text" name="address" v-model="dataForm.address" placeholder="请输入本人收件地址（选填）" />
+        </div>
+        <div class="cum">
           <input type="text" name="referrer_name" v-model="dataForm.referrer_name" placeholder="*请输入推荐人姓名" />
         </div>
         <div class="cum">
           <input type="tel" name="referrer_phone" v-model="dataForm.referrer_phone" placeholder="*请输入推荐人手机号" />
+        </div>
+        <div class="cum">
+          <input type="text" name="referrer_address" v-model="dataForm.referrer_address" placeholder="请输入推荐人收件地址（选填）" />
         </div>
         <div class="cum ">
           <input type="text" name="vin_number" v-model="dataForm.vin_number" @keyup="toUC" @blur="getCarInt" placeholder="*请输入VIN编码" />
@@ -101,7 +107,9 @@
           phone:'',
           referrer_phone:'',
           referrer_name:'',
-          vin_number:''
+          vin_number:'',
+          address:'',
+          referrer_address:''
         },
         carModel:'',
         check:false,
@@ -140,7 +148,6 @@
       }
     },
     created(){
-
       this.getThoken()
       this.getActiveInfo();
     },
@@ -180,6 +187,11 @@
 
       getActiveInfo:function(){
         var _this = this;
+        var pram={}
+        if(_this.$route.query.source_code){
+          pram.source_code=_this.$route.query.source_code
+        }
+
         $.ajax({
           url:process.env.API_ROOT+"/app/r/api?sysName=BX_WX&apiName=GET_ACTIVITIES",
           type:'post',
@@ -187,8 +199,7 @@
             'Content-Type':'application/json;charset=utf8',
             'Authorization':'Bearer ' + _this.token
           },
-          data:JSON.stringify({
-          }),
+          data:JSON.stringify(pram),
           success:function(data){
             if (data.result == 'S') {
               _this.info=data.info.lists[0];
@@ -497,7 +508,9 @@
             "vin_number": _this.dataForm.vin_number,
             "province_code": _this.province.now.id,
             "city_code": _this.city.now.id,
-            "dealer_code":  _this.dealer.now.id
+            "dealer_code":  _this.dealer.now.id,
+            'address':_this.dataForm.address,
+            'referrer_address':_this.dataForm.referrer_address
           }),
           success:function(ms){
             if (ms.result=='S') {
