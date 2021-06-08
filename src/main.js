@@ -118,7 +118,7 @@ var router = new VueRouter({
       component:resolve => (require(['@/components/Imgs'],resolve))
     },{
       path:'/redirect',
-      name:'营销活动',
+      name:'关注',
       component:resolve=>(require(["@/components/Redirect"],resolve)),
       meta:{
         sel:9
