@@ -192,6 +192,10 @@
           pram.source_code=_this.$route.query.source_code
         }
 
+        if(_this.$route.query.dealer_code){
+          pram.dealer_code=_this.$route.query.dealer_code
+        }
+
         $.ajax({
           url:process.env.API_ROOT+"/app/r/api?sysName=BX_WX&apiName=GET_ACTIVITIES",
           type:'post',
