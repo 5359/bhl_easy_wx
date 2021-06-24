@@ -27,10 +27,10 @@
         <div class="cum">
           <input type="text" name="referrer_address" v-model="dataForm.referrer_address" placeholder="请输入推荐人收件地址（选填）" />
         </div>
-        <div class="cum ">
-          <input type="text" name="vin_number" v-model="dataForm.vin_number" @keyup="toUC" @blur="getCarInt" placeholder="*请输入VIN编码" />
-          <span class="carModel">{{carModel}}</span>
-        </div>
+        <!--<div class="cum ">-->
+          <!--<input type="text" name="vin_number" v-model="dataForm.vin_number" @keyup="toUC" @blur="getCarInt" placeholder="*请输入VIN编码" />-->
+          <!--<span class="carModel">{{carModel}}</span>-->
+        <!--</div>-->
         <div class="cum sel" id="province" @click="getProvince">
           <b v-if="province.set">{{province.now.value}}</b><span v-else>*请选择省份</span>
         </div>
@@ -472,13 +472,16 @@
         }else if(!reg.test(_this.dataForm.referrer_phone)){
           subform=false;
           _this.errorTxt = '请输入正确的推荐人手机号'
-        }else if(_this.dataForm.vin_number==''){
-          subform=false;
-          _this.errorTxt = '请输入VIN编码'
-        }else if(!/^[A-HJ-NPR-Z\d]{8}[X\d][A-HJ-NPR-Z\d]{3}\d{5}$/.test(_this.dataForm.vin_number)){
-          subform=false;
-          _this.errorTxt='请输入正确的VIN编码'
-        }else if(!_this.province.now.id){
+        }
+        // else if(_this.dataForm.vin_number==''){
+        //   subform=false;
+        //   _this.errorTxt = '请输入VIN编码'
+        // }
+        // else if(!/^[A-HJ-NPR-Z\d]{8}[X\d][A-HJ-NPR-Z\d]{3}\d{5}$/.test(_this.dataForm.vin_number)){
+        //   subform=false;
+        //   _this.errorTxt='请输入正确的VIN编码'
+        // }
+        else if(!_this.province.now.id){
           subform=false;
           _this.errorTxt = '请选择省份'
         }else if(!_this.city.now.id){
