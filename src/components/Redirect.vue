@@ -13,10 +13,13 @@
     </h-content>
 
     <h-content v-if="status == 2">
-      <vue-qr style="width: 20%;" :bgSrc='config.imagePath' :text="config.value" :size="200"
-              :margin="0"></vue-qr>
-      <!--<h1 class="loading"><span>加载中...</span></h1>-->
-      <!--<div class="weui_msg"><div class="weui_icon_area"><i class="weui_icon_info weui_icon_msg"></i></div><div class="weui_text_area"><h4 class="weui_msg_title">请在微信客户端打开链接</h4></div></div>-->
+      <!--<vue-qr style="width: 20%;" :bgSrc='config.imagePath' :text="config.value" :size="200"-->
+      <!--:margin="0"></vue-qr>-->
+      <h1 class="loading"><span>加载中...</span></h1>
+      <!--<div class="weui_msg">-->
+      <!--<div class="weui_icon_area"><i class="weui_icon_info weui_icon_msg"></i></div>-->
+      <!--<div class="weui_text_area"><h4 class="weui_msg_title">请在微信客户端打开链接</h4></div>-->
+      <!--</div>-->
     </h-content>
   </h-view>
 </template>
@@ -55,8 +58,8 @@
           this.status = 1;
         } else {
           // this.status = 2;
-           this.getThoken();
-           this.getActiveInfo();
+          this.getThoken();
+          this.getActiveInfo();
         }
       },
       getThoken: function () {
@@ -92,7 +95,7 @@
             if (data.result == 'S') {
               _this.status = 2;
               // window.open(process.env.REDIRECT_URL, '_self');
-              // window.location.href=process.env.REDIRECT_URL;
+              window.location.href = process.env.REDIRECT_URL;
             } else {
               alert("获取活动失败，请联系管理员！");
             }
