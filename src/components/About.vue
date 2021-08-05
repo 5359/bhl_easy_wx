@@ -7,8 +7,9 @@
         <div class="img"><img src="../assets/img.jpg"></div>
         <p>由北京汽车股份有限公司、韩国现代金融株式会社、现代汽车（中国）投资有限公司共同投资设立的中外合资融资租赁公司，注册资本人民币3亿元。</p>
         <p>公司旨在利用先进科学的管理技术和程序，为广大经销商合作伙伴、政企事业单位和终端个人用户，提供优质的租赁产品和服务方案。同时，公司也将紧扣时代发展，整合优势资源和客户需求，提供全方位、多元化的融资租赁服务，致力成为中国融资租赁行业的优势服务提供商。</p>
-        <span>客服电话：<a href="tel:400-818-1555">400-818-1555</a> / <a href="tel:400-818-1566">400-818-1566</a><br>
-            客服邮箱：<a href="mailto:KF_BHL@bhlease.com.cn">KF_BHL@bhlease.com.cn</a></span>     
+        <span>经销商专线：<a href="tel:400-818-1555">400-818-1555</a><br>
+              客户专线：<a href="tel:400-818-1566">400-818-1566</a><br>
+              客服邮箱：<a href="mailto:KF_BHL@bhlease.com.cn">KF_BHL@bhlease.com.cn</a></span>
       </div>
 
       <Footer  />

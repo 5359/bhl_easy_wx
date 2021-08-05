@@ -19,13 +19,14 @@
       </p>
       <p>
         <span><img src="../assets/tel_icon.png">客服中心</span>
-        <a href="tel:400-818-1555">400-818-1555</a> / <a href="tel:400-818-1566">400-818-1566</a>
+        <a href="tel:400-818-1555">经销商专线：400-818-1555</a><br>
+        <a href="tel:400-818-1566">客户专线：400-818-1566</a>
       </p>
       <p>
         <span><img src="../assets/mail_icon.png">邮箱</span>
         <a href="mailto:KF_BHL@bhlease.com.cn">KF_BHL@bhlease.com.cn</a>
       </p>
-   
+
     </div>
 
     <Footer  />
