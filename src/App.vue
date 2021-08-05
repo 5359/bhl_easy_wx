@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Header v-if="this.$route.name!=='classHome'&&this.$route.name!=='imgs'"></header>
+    <Header v-if="this.$route.name!=='classHome'&&this.$route.name!=='imgs'&&this.$route.name!=='redirect'"></header>
     <router-view/>
   </div>
 </template>
@@ -285,7 +285,7 @@ body{}
 }
 
 @media screen and (min-width: 750px) {
-  
+
   h1{font-size:20px;}
   .wrap{width:750px;margin:0 auto;}
 
